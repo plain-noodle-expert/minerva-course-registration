@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minerva Auto-Register</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎓 Minerva Auto-Register</h1>
+      <p class="subtitle">McGill Course Registration Helper</p>
+    </header>
+
+    <div class="status" id="status">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Ready</span>
+    </div>
+
+    <div class="section">
+      <h2>Add Course</h2>
+      <div class="input-group">
+        <input 
+          type="text" 
+          id="courseInput" 
+          placeholder="e.g., COMP-251-001 or 1234"
+        />
+        <button id="addCourse" class="btn btn-primary">Add</button>
+      </div>
+      <small class="help-text">Format: DEPT-NNN-NNN or 4-digit CRN (e.g., COMP-251-001 or 1234)</small>
+    </div>
+
+    <div class="section">
+      <h2>Course List</h2>
+      <div id="courseList" class="course-list">
+        <p class="empty-state">No courses added yet</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Auto-Registration Settings</h2>
+      <div class="settings">
+        <label class="checkbox-label">
+          <input type="checkbox" id="autoRefresh" />
+          <span>Enable auto-refresh (checks every 5 minutes)</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="notifications" checked />
+          <span>Enable notifications</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="startRegistration" class="btn btn-success">
+        Start Auto-Registration
+      </button>
+      <button id="stopRegistration" class="btn btn-danger" style="display: none;">
+        Stop
+      </button>
+      <button id="clearAll" class="btn btn-secondary">
+        Clear All
+      </button>
+    </div>
+
+    <footer>
+      <small>Make sure you're logged into Minerva before starting</small>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

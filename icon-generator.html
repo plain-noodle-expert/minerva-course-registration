@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        .container {
+            display: inline-block;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minerva Auto-Register Icon Generator</h1>
+    <p>Right-click each canvas and "Save Image As" to save the icons</p>
+    
+    <div class="container">
+        <h3>16x16</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+    </div>
+    
+    <div class="container">
+        <h3>48x48</h3>
+        <canvas id="icon48" width="48" height="48"></canvas>
+    </div>
+    
+    <div class="container">
+        <h3>128x128</h3>
+        <canvas id="icon128" width="128" height="128"></canvas>
+    </div>
+
+    <script>
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // McGill red background
+            ctx.fillStyle = '#ED1B2F';
+            ctx.fillRect(0, 0, size, size);
+            
+            // White "M" text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('M', size / 2, size / 2);
+            
+            // Add subtle border
+            ctx.strokeStyle = '#C41230';
+            ctx.lineWidth = size * 0.05;
+            ctx.strokeRect(0, 0, size, size);
+        }
+        
+        // Draw all icons
+        drawIcon('icon16', 16);
+        drawIcon('icon48', 48);
+        drawIcon('icon128', 128);
+        
+        // Auto-download functionality
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Add download buttons
+        setTimeout(() => {
+            if (confirm('Auto-download all icons now?')) {
+                downloadIcon('icon16', 'icon16.png');
+                setTimeout(() => downloadIcon('icon48', 'icon48.png'), 500);
+                setTimeout(() => downloadIcon('icon128', 'icon128.png'), 1000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
